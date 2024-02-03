@@ -1,3 +1,7 @@
 <resources>
     <string name="app_name">BluetoothSampleConnection</string>
+    <string name="enter_e_mail">Enter E-mail</string>
+    <string name="arabic">عربي</string>
+    <string name="english">English</string>
+    <string name="change_language">Change Language</string>
 </resources>

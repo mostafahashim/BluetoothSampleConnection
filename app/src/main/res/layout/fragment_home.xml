@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+
+        <import type="android.view.View" />
+
+        <variable
+            name="viewModel"
+            type="bluetooth.sample.connection.fragment.HomeViewModel" />
+    </data>
+
+    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:padding="16dp">
+
+
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/text_input_layout_stroke_color"
+            android:drawableStart="@drawable/bluetooth_icon"
+            android:drawablePadding="10dp"
+            android:gravity="start"
+            android:hint="@string/enter_e_mail"
+            android:imeOptions="actionNext"
+            android:text="@={viewModel.email}"
+            android:inputType="textEmailAddress"
+            android:padding="10dp"
+            android:textAlignment="viewStart"
+            android:textColor="@color/gray_600"
+            android:textColorHint="@color/gray3"
+            android:textSize="16sp" />
+
+        <RadioGroup
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <RadioButton
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:checked="@={viewModel.isArabic}"
+                android:text="@string/arabic" />
+
+            <RadioButton
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:checked="@={!viewModel.isArabic}"
+                android:text="@string/english" />
+
+        </RadioGroup>
+
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="10dp"
+            android:onClick="@{()->viewModel.onButtonChangeLanguageClicked()}"
+            android:text="@string/change_language"
+            android:textColor="@color/white" />
+    </LinearLayout>
+
+</layout>
