@@ -1,8 +1,9 @@
 package bluetooth.sample.connection.domain.remoteService
 
-import almaqraa.student.domain.parseFromJson
 import android.util.Log
 import bluetooth.sample.connection.data.resources.DataState
+import bluetooth.sample.connection.domain.parseArrayFromJson
+import bluetooth.sample.connection.domain.parseFromJson
 import bluetooth.sample.connection.domain.setup.getDefaultHeaders
 import com.google.gson.Gson
 import kotlinx.coroutines.flow.Flow
@@ -16,7 +17,8 @@ import org.json.JSONObject
 suspend inline fun <reified T> startGetMethodUsingCoroutines(
     isUseBaseUrlPref: Boolean,
     urlFunction: String,
-    params: MutableMap<String, Any>
+    params: MutableMap<String, Any>,
+    isArrayList: Boolean,
 ): Flow<DataState<Any?>> =
     flow {
         val apiInterface = ConnectionHandler.getInstance().getClient(isUseBaseUrlPref)
@@ -27,9 +29,17 @@ suspend inline fun <reified T> startGetMethodUsingCoroutines(
         )
         if ((response.code() == 200 || response.code() == 201) && response.isSuccessful) {
             Log.v("response", response.body()!!.toString())
-            var responseModel =
-                parseFromJson(response.body()!!.toString()) as T?
-            emit(DataState.Success(responseModel))
+            if (isArrayList) {
+                var responseModel = parseArrayFromJson<T>(response.body()!!.toString())
+                emit(DataState.Success(responseModel))
+            } else {
+                var responseModel = parseFromJson(response.body()!!.toString()) as T?
+                emit(DataState.Success(responseModel))
+            }
+//            var responseModel =
+//                if (isArrayList) parseArrayFromJson(response.body()!!.toString()) as ArrayList<T>?
+//                else parseFromJson(response.body()!!.toString()) as T?
+//            emit(DataState.Success(responseModel))
         } else if (response.code() == 401 && response.errorBody() != null) {
             try {
                 emit(

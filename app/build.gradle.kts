@@ -21,6 +21,7 @@ android {
         versionName = "1.0"
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
+        multiDexEnabled = true
     }
 
     buildTypes {
@@ -33,7 +34,7 @@ android {
             buildConfigField(
                 "String",
                 "BASE_URL",
-                "\"" + "https://108.181.198.141:1122/api/" + "\""
+                "\"" + "http://108.181.198.141:8787/api/" + "\""
             )
         }
         debug {
@@ -45,7 +46,7 @@ android {
             buildConfigField(
                 "String",
                 "BASE_URL",
-                "\"" + "https://taahod.quraniqraa.com/api/v1/" + "\""
+                "\"" + "http://108.181.198.141:8787/api/" + "\""
             )
         }
 
@@ -70,6 +71,7 @@ dependencies {
 
     //LiveData & ViewModel
     implementation("androidx.lifecycle:lifecycle-extensions:2.2.0")
+    implementation("androidx.lifecycle:lifecycle-viewmodel-ktx:2.7.0")
 //    implementation 'android.arch.lifecycle:extensions:1.1.1'
     implementation("androidx.lifecycle:lifecycle-livedata-ktx:2.7.0")
     // retrofit2

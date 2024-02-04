@@ -1,7 +1,24 @@
-package almaqraa.student.domain
+package bluetooth.sample.connection.domain
 
+import android.util.Log
+import bluetooth.sample.connection.data.model.UserModel
 import com.google.gson.Gson
 import com.google.gson.reflect.TypeToken
+
+inline fun <reified T> parseArrayFromJson(response: String?): ArrayList<T>? {
+    return try {
+        Log.e("response", response ?: "")
+        val gson = Gson()
+        val type = object : TypeToken<ArrayList<T>>() {
+
+        }.type
+        gson.fromJson(response, type)
+    } catch (e1: Exception) {
+        e1.printStackTrace()
+        Log.e("response", e1.message.toString())
+        ArrayList()
+    }
+}
 
 inline fun <reified T> parseFromJson(response: String?): T? {
     return try {

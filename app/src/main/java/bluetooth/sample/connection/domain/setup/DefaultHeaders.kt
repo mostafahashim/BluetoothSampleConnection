@@ -13,10 +13,10 @@ inline fun getDefaultHeaders(
 //    var token = Preferences.getUserToken()
 //    params["device-token"] = token
 
-    params["device-type"] = if (Build.MANUFACTURER.lowercase().contains("HUAWEI".lowercase()))
-        "HUAWEI"
-    else
-        "ANDROID"
+//    params["device-type"] = if (Build.MANUFACTURER.lowercase().contains("HUAWEI".lowercase()))
+//        "HUAWEI"
+//    else
+//        "ANDROID"
 //    params["Accept-Language"] = Preferences.getApplicationLocale()
 //    params["language"] = Preferences.getApplicationLocale()
 //    params["Authorization"] = if (!Preferences.getAPIToken()
