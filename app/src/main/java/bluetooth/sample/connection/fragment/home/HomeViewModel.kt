@@ -1,9 +1,7 @@
-package bluetooth.sample.connection.fragment
+package bluetooth.sample.connection.fragment.home
 
 import almaqraa.student.domain.URL
-import android.app.Application
 import android.util.Log
-import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.viewModelScope
 import bluetooth.sample.connection.MyApplication
@@ -14,7 +12,7 @@ import bluetooth.sample.connection.data.model.UserModel
 import bluetooth.sample.connection.data.resources.DataState
 import bluetooth.sample.connection.domain.remoteService.startGetMethodUsingCoroutines
 import bluetooth.sample.connection.domain.setup.getDefaultParams
-import kotlinx.coroutines.flow.collect
+import bluetooth.sample.connection.observer.OnItemClickObserver
 import kotlinx.coroutines.launch
 
 class HomeViewModel(application: MyApplication) : MainViewModel(application) {
@@ -28,7 +26,12 @@ class HomeViewModel(application: MyApplication) : MainViewModel(application) {
 
     init {
         isArabic.value = Preferences.getApplicationLocale() == "ar"
-        recyclerUsersAdapter = RecyclerUsersAdapter(userModels)
+        recyclerUsersAdapter = RecyclerUsersAdapter(userModels, object : OnItemClickObserver {
+            override fun onItemClick(position: Int) {
+                observer.openUserDetails(position)
+            }
+
+        })
 
         getUsers()
     }
@@ -75,5 +78,6 @@ class HomeViewModel(application: MyApplication) : MainViewModel(application) {
 
     interface Observer {
         fun changeLanguage()
+        fun openUserDetails(position: Int)
     }
 }

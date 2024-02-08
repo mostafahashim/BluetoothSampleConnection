@@ -8,4 +8,10 @@ object URL {
         return url
     }
 
+    fun insertUser(): String {
+        var url = "register/insertuser02"
+//        url = url.replace(" ".toRegex(), "%20")
+        return url
+    }
+
 }

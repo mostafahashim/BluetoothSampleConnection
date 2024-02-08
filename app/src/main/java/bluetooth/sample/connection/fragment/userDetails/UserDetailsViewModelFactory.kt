@@ -1,14 +1,14 @@
-package bluetooth.sample.connection.fragment
+package bluetooth.sample.connection.fragment.userDetails
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import bluetooth.sample.connection.MyApplication
 
-class HomeViewModelFactory(
+class UserDetailsViewModelFactory(
     var application: MyApplication
 ) :
     ViewModelProvider.NewInstanceFactory() {
     override fun <T : ViewModel> create(modelClass: Class<T>): T {
-        return HomeViewModel(application) as T
+        return UserDetailsViewModel(application) as T
     }
 }

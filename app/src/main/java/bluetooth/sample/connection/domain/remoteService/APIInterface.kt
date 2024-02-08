@@ -49,7 +49,7 @@ interface APIInterface {
         @HeaderMap headers: Map<String, String>,
         @Path(
             value = "function",
-            encoded = true
+            encoded = false
         ) function: String, @Body params: RequestBody
     ): Response<String>
 

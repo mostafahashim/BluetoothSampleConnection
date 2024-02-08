@@ -5,4 +5,7 @@
     <string name="english">English</string>
     <string name="change_language">Change Language</string>
     <string name="id_s">Id = %s</string>
+    <string name="enter_name">Enter name</string>
+    <string name="enter_father_name">enter father name</string>
+    <string name="update_data">Update Data</string>
 </resources>

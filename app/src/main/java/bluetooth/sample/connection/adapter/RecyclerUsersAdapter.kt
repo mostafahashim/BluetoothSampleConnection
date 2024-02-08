@@ -8,9 +8,11 @@ import androidx.recyclerview.widget.RecyclerView
 import bluetooth.sample.connection.R
 import bluetooth.sample.connection.data.model.UserModel
 import bluetooth.sample.connection.databinding.RecyclerItemUserBinding
+import bluetooth.sample.connection.observer.OnItemClickObserver
 
 class RecyclerUsersAdapter(
     var models: ArrayList<UserModel>,
+    var onItemClickObserver: OnItemClickObserver
 ) : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
 
     lateinit var context: Context
@@ -34,6 +36,9 @@ class RecyclerUsersAdapter(
         var holder = holder as ViewHolder
 
         holder.binding.model = models[holder.layoutPosition]
+        holder.itemView.setOnClickListener {
+            onItemClickObserver.onItemClick(holder.layoutPosition)
+        }
 
     }
 

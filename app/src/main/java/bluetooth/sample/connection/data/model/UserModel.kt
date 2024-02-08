@@ -1,8 +1,10 @@
 package bluetooth.sample.connection.data.model
 
-class UserModel {
-    var UserId: Int? = 0
-    var Name: String? = ""
-    var Age: String? = ""
-    var FatherName: String? = ""
+import java.io.Serializable
+
+class UserModel : Serializable {
+    var userId: Int? = 0
+    var name: String? = ""
+    var age: String? = ""
+    var fatherName: String? = ""
 }

@@ -1,4 +1,4 @@
-package bluetooth.sample.connection.fragment
+package bluetooth.sample.connection.fragment.home
 
 import android.content.Context
 import android.os.Bundle
@@ -11,10 +11,8 @@ import androidx.lifecycle.ViewModelProvider
 import bluetooth.sample.connection.MyApplication
 import bluetooth.sample.connection.R
 import bluetooth.sample.connection.activity.main.MainActivity
-import bluetooth.sample.connection.activity.main.MainViewModel
-import bluetooth.sample.connection.activity.main.MainViewModelFactory
 import bluetooth.sample.connection.databinding.FragmentHomeBinding
-import java.util.zip.Inflater
+import bluetooth.sample.connection.fragment.userDetails.UserDetailsFragment
 
 class HomeFragment : Fragment(), HomeViewModel.Observer {
 
@@ -54,6 +52,23 @@ class HomeFragment : Fragment(), HomeViewModel.Observer {
 
     override fun changeLanguage() {
         activity?.recreate()
+    }
+
+    override fun openUserDetails(position: Int) {
+        val userDetailsFragment = UserDetailsFragment()
+        val userModel = binding.viewModel?.userModels!![position]
+        val bundle = Bundle()
+        bundle.putSerializable("UserModel", userModel)
+        userDetailsFragment.arguments = bundle
+        activity!!.replaceCurrentFragment(
+            activity = activity!!,
+            container = R.id.frameLayout_main_Activity,
+            tag = "UserDetailsFragment",
+            targetFragment = userDetailsFragment,
+            addToBackStack = true,
+            duplicateIfInBackStack = false,
+            animate = false
+        )
     }
 
 }

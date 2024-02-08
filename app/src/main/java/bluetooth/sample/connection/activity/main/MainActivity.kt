@@ -11,7 +11,7 @@ import bluetooth.sample.connection.MyApplication
 import bluetooth.sample.connection.Preferences
 import bluetooth.sample.connection.R
 import bluetooth.sample.connection.databinding.ActivityMainBinding
-import bluetooth.sample.connection.fragment.HomeFragment
+import bluetooth.sample.connection.fragment.home.HomeFragment
 
 class MainActivity : AppCompatActivity() {
 
