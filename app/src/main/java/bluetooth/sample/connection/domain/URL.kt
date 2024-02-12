@@ -9,7 +9,7 @@ object URL {
     }
 
     fun insertUser(): String {
-        var url = "register/insertuser02"
+        var url = "register/InsertUser01"
 //        url = url.replace(" ".toRegex(), "%20")
         return url
     }

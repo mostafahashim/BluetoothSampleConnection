@@ -13,6 +13,7 @@ import bluetooth.sample.connection.data.model.UserModel
 import bluetooth.sample.connection.data.resources.DataState
 import bluetooth.sample.connection.domain.remoteService.startGetMethodUsingCoroutines
 import bluetooth.sample.connection.domain.remoteService.startPostMethodUsingCoroutines
+import bluetooth.sample.connection.domain.remoteService.startPostMethodWithGSONParamsUsingCoroutines
 import bluetooth.sample.connection.domain.setup.getDefaultParams
 import bluetooth.sample.connection.observer.OnItemClickObserver
 import kotlinx.coroutines.launch
@@ -85,23 +86,23 @@ class UserDetailsViewModel(application: MyApplication) : MainViewModel(applicati
     }
 
     fun updateUser() {
-//        var params = getDefaultParams(application, HashMap())
-//        params["name"] = name.value ?: ""
-//        params["fatherName"] = fatherName.value ?: ""
-//        params["age"] = agePosition.value!! + 1
+        var params = getDefaultParams(application, HashMap())
+        params["name"] = name.value ?: ""
+        params["fatherName"] = fatherName.value ?: ""
+        params["age"] = agePosition.value!! + 1
 
-        var params = getDefaultParams(application, MultipartBody.Builder())
+//        var params = getDefaultParams(application, MultipartBody.Builder())
 //        params.addFormDataPart("name", name.value!!)
         var url = URL.insertUser()
-        url = url.plus("?")
-        url = url.plus("name=${name.value ?: ""}&")
-        url = url.plus("fatherName=${fatherName.value ?: ""}&")
-        url = url.plus("age=${agePosition.value!! + 1}")
+//        url = url.plus("?")
+//        url = url.plus("name=${name.value ?: ""}&")
+//        url = url.plus("fatherName=${fatherName.value ?: ""}&")
+//        url = url.plus("age=${agePosition.value!! + 1}")
         viewModelScope.launch {
-            startPostMethodUsingCoroutines<String>(
+            startPostMethodWithGSONParamsUsingCoroutines<String>(
                 false,
                 url,
-                params.build(),
+                params,
             ).collect { response ->
                 when (response) {
                     is DataState.Loading -> {
@@ -111,6 +112,7 @@ class UserDetailsViewModel(application: MyApplication) : MainViewModel(applicati
                     is DataState.Error -> {
                         isLoading.value = false
                         Log.e("Connectionerror", response.error)
+                        observer.showMessage(response.error)
                     }
 
                     is DataState.Success -> {
