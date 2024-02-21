@@ -5,6 +5,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
@@ -13,6 +14,9 @@ import bluetooth.sample.connection.R
 import bluetooth.sample.connection.activity.main.MainActivity
 import bluetooth.sample.connection.databinding.FragmentHomeBinding
 import bluetooth.sample.connection.fragment.userDetails.UserDetailsFragment
+import bluetooth.sample.connection.observer.OnAskUserAction
+import bluetooth.sample.connection.sub.BottomSheetInfoFragment
+import bluetooth.sample.connection.sub.PopupDialogAskUserAction
 
 class HomeFragment : Fragment(), HomeViewModel.Observer {
 
@@ -52,6 +56,47 @@ class HomeFragment : Fragment(), HomeViewModel.Observer {
 
     override fun changeLanguage() {
         activity?.recreate()
+    }
+
+    override fun openPopupDialog() {
+        val popupDialogAskUserAction = PopupDialogAskUserAction()
+        val bundle = Bundle()
+        bundle.putString("title", "Popup dialog")
+        bundle.putString("body", "Example for Popup  dialog")
+        bundle.putString("negativeButtonText", "Cancel")
+        bundle.putString("positiveButtonText", "OK")
+
+        bundle.putBoolean("isShowTitle", true)
+        bundle.putBoolean("isShowNegativeButton", true)
+        bundle.putBoolean("isShowPositiveButton", true)
+        bundle.putBoolean("isShowTitle", true)
+        popupDialogAskUserAction.arguments = bundle
+        popupDialogAskUserAction.onAskUserAction = object : OnAskUserAction {
+            override fun onPositiveAction() {
+                Toast.makeText(activity, "Ok Clicked", Toast.LENGTH_LONG).show()
+            }
+
+            override fun onNegativeAction() {
+                Toast.makeText(activity, "Cancel Clicked", Toast.LENGTH_LONG).show()
+            }
+
+        }
+        popupDialogAskUserAction.show(
+            requireActivity().supportFragmentManager,
+            "PopupDialogAskUserAction"
+        )
+    }
+
+    override fun openBottomSheetDialog() {
+        val bottomSheetInfoFragment = BottomSheetInfoFragment()
+        val bundle = Bundle()
+        bundle.putString("title", "Bottom sheet dialog")
+        bundle.putString("body", "Example for bottom sheet dialog")
+        bottomSheetInfoFragment.arguments = bundle
+        bottomSheetInfoFragment.show(
+            requireActivity().supportFragmentManager,
+            "BottomSheetInfoFragment"
+        )
     }
 
     override fun openUserDetails(position: Int) {

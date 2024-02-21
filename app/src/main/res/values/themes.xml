@@ -119,5 +119,15 @@
         <item name="android:textSize">20sp</item>
     </style>
 
+    <style name="RoundTopWhiteSheetDialogStyle" parent="Theme.Design.Light.BottomSheetDialog">
+        <item name="android:windowIsFloating">false</item>
+        <item name="android:statusBarColor">@android:color/transparent</item>
+        <item name="android:windowSoftInputMode">adjustResize</item>
+        <item name="bottomSheetStyle">@style/RoundTopWhiteBottomSheetBackground</item>
+    </style>
+
+    <style name="RoundTopWhiteBottomSheetBackground" parent="Widget.Design.BottomSheet.Modal">
+        <item name="android:background">@drawable/big_round_top_bg_white</item>
+    </style>
 
 </resources>

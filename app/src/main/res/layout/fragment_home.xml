@@ -65,14 +65,38 @@
 
             </RadioGroup>
 
-            <Button
-                android:layout_width="wrap_content"
+            <LinearLayout
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_gravity="center_horizontal"
                 android:layout_marginTop="10dp"
-                android:onClick="@{()->viewModel.onButtonChangeLanguageClicked()}"
-                android:text="@string/change_language"
-                android:textColor="@color/white" />
+                android:orientation="horizontal">
+
+                <Button
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_horizontal"
+                    android:onClick="@{()->viewModel.onButtonChangeLanguageClicked()}"
+                    android:text="@string/change_language"
+                    android:textColor="@color/white" />
+
+                <Button
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_horizontal"
+                    android:layout_marginStart="10dp"
+                    android:onClick="@{()->viewModel.observer.openPopupDialog()}"
+                    android:text="popup dialog"
+                    android:textColor="@color/white" />
+
+                <Button
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_horizontal"
+                    android:layout_marginStart="10dp"
+                    android:onClick="@{()->viewModel.observer.openBottomSheetDialog()}"
+                    android:text="Bottomsheet"
+                    android:textColor="@color/white" />
+            </LinearLayout>
 
             <androidx.recyclerview.widget.RecyclerView
                 android:layout_width="match_parent"

@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout>
+
+    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/rounded_bg_with_shadow_small_blur"
+        android:gravity="center_horizontal"
+        android:orientation="vertical"
+        android:padding="25dp">
+
+        <TextView
+            android:id="@+id/txtview_dialog_sure_title"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:text="@string/app_name"
+            android:textColor="@color/gray_900"
+            android:textSize="16sp" />
+
+        <TextView
+            android:id="@+id/txtview_dialog_sure_body"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="15dp"
+            android:includeFontPadding="false"
+            android:text="@string/app_name"
+            android:textColor="@color/taupe"
+            android:textSize="16sp" />
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp">
+
+            <LinearLayout
+                android:id="@+id/layout_dialog_sure_actions"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentEnd="true"
+                android:layout_centerVertical="true"
+                android:gravity="end">
+
+                <TextView
+                    android:id="@+id/btn_dialog_sure_cancel"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical"
+                    android:background="@drawable/layout_bg_transparent_gray_selector_with_bg_transparent"
+                    android:includeFontPadding="false"
+                    android:padding="10dp"
+                    android:text="Cancel"
+                    android:textAllCaps="false"
+                    android:textColor="@color/gray"
+                    android:textSize="16sp" />
+
+                <TextView
+                    android:id="@+id/btn_dialog_sure_ok"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/layout_bg_transparent_gray_selector_with_bg_transparent"
+                    android:includeFontPadding="false"
+                    android:padding="10dp"
+                    android:text="OK"
+                    android:textAllCaps="true"
+                    android:textColor="@color/colorPrimary"
+                    android:textSize="16sp" />
+            </LinearLayout>
+        </RelativeLayout>
+    </LinearLayout>
+</layout>

@@ -78,6 +78,8 @@ class HomeViewModel(application: MyApplication) : MainViewModel(application) {
 
     interface Observer {
         fun changeLanguage()
+        fun openPopupDialog()
+        fun openBottomSheetDialog()
         fun openUserDetails(position: Int)
     }
 }
